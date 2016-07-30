@@ -1,44 +1,6 @@
 #include<stdio.h>
 int pn(int z);
-int prime(int x);
-int special_prime(int y);
 int j;
-int prime(int x)
-{
-    if((x!=2)&&(x%2==0))
-        return 0;
-    else
-    {
-        int cnt=0;
-        for(j=2;j<=x;j++)
-           if(x%j==0)
-             cnt++;
-
-        if(cnt==1)
-            return 1;
-        else
-           return 0;
-    }
-}
-
-int special_prime(int y)
-{
-    if((y!=2)&&(y%2==0))
-        return 0;
-    else
-    {
-        int cnt=0;
-        for(j=2;j<=y;j++)
-           if(y%j==0)
-              cnt++;
-
-        if(cnt==1)
-           return 1;
-        else
-           return 0;
-    }
-}
-
 int pn(int z)
 {
     if(z==2)
