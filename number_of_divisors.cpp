@@ -8,11 +8,15 @@ int main()
   cin>>n;
   cout<<endl;
   int l=sqrt(n);
-  for(i=1;i<=n;i++)
+  for(i=1;i<=l;i++)
     if(n%i==0)
       {
         cnt++;
+        if(i!=(n/i))
+        {
+          cnt++;
+        }
       }
-  cout<<cnt;
+  cout<<endl<<cnt;
   return 0;
 }
