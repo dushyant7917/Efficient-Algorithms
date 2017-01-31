@@ -1,3 +1,5 @@
+// Algorithm to find the number of divisors of a given number
+
 #include<iostream>
 #include<math.h>
 using namespace std;
