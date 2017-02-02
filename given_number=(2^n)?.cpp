@@ -1,4 +1,5 @@
 // Algorithm to find if a given number is of the form 2^n
+
 #include<iostream>
 using namespace std;
 
