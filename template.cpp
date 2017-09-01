@@ -7,7 +7,8 @@ typedef long long ll;
 #define loopj(a,b) for(ll j=a;i<b;j++)
 
 int main(){
-
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
 
   return 0;
 }
