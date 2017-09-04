@@ -3,8 +3,7 @@
 using namespace std;
 
 typedef long long ll;
-#define loopi(a,b) for(ll i=a;i<b;i++)
-#define loopj(a,b) for(ll j=a;i<b;j++)
+#define loop(a,b) for(ll i=a;i<b;i++)
 
 int main(){
   ios::sync_with_stdio(false);
