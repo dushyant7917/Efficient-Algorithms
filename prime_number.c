@@ -2,32 +2,21 @@
 
 #include<stdio.h>
 
-int prime_num(int number)
-{
-    if(number==1)
-       return 0;
-    if(number==2)
-       return 1;
-    if(number==3)
-       return 1;
-    if(number%2==0)
-       return 0;
-    if(number%3==0)
-       return 0;
+bool prime_num(int n){
+    // corner cases
+    if(n<=1)return false;
+    if(n<=3)return true;
+
+    // Below code is checked so that we can skip middle 5 numbers in the later while loop
+    if(n%2==0 || n%3==0)return false;
 
     int i=5;
-    int w=2;
+    while(i*i<=n){
+        if(n%i==0 || n%(i+2)==0)return false;
+        i+=6;
+    }
 
-    while(i*i<=number)
-     {
-        if(number%i==0)
-            return 0;
-
-        i+=w;
-        w=6-w;
-     }
-
-    return 1;
+    return true;
 }
 
 int main()
@@ -36,7 +25,7 @@ int main()
     printf("Enter a number:");
     scanf("%d",&num);
 
-    if(prime_num(num)==1)
+    if(prime_num(num))
     printf("\n%d is a prime number.",num);
     else
     printf("\n%d is a not a prime number.",num);
