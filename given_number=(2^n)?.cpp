@@ -4,7 +4,8 @@
 using namespace std;
 
 bool multipleTwo(int x)
-{
+{   
+    if(x==0) return false;
     return (!(x & (x-1)));
 }
 
