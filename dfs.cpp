@@ -5,9 +5,9 @@ using namespace std;
 int visited[N];
 
 void dfs(vector<int> graph[], int node) {
-  //cout<<"\nnode:"<<node;
   if(visited[node] == 1)
     return;
+
   // Else
   visited[node]=1;
   cout<<node<<" ";
