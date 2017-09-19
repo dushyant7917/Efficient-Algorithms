@@ -4,6 +4,25 @@ using namespace std;
 
 int visited[N];
 
+void dfs_iterative(vector<int> graph[], int node){
+  stack<int> s;
+  s.push(node);
+  visited[node] = 1;
+  
+  int cur_node;
+  while(!s.empty()){
+    cur_node = s.top();
+    s.pop();
+    cout<<cur_node<<" ";
+    for(int i = 0; i<graph[cur_node].size(); i++){
+      if(visited[graph[cur_node][i]] == 0){
+        visited[graph[cur_node][i]] = 1;
+        s.push(graph[cur_node][i]);
+      }
+    }
+  } 
+}
+
 void dfs(vector<int> graph[], int node) {
   if(visited[node] == 1)
     return;
