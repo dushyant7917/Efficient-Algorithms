@@ -5,7 +5,8 @@ using namespace std;
 typedef long long ll;
 typedef double dbl;
 #define fr(x,a,b) for(ll x=a;x<b;x++)
-#define pb push_back
+#define PB push_back
+#define MP make_pair
 #define mod 1000000007
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
