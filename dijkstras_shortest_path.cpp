@@ -53,7 +53,7 @@ int main(){
   ll n,m;
   cin>>n>>m;
 
-  vector< pair<ll,ll> > edges[n+1];
+  vector< pair<ll,ll> > edges[m+1];
   ll start_node,end_node,weight;
   fr(i,0,m){
     cin>>start_node>>end_node>>weight;
