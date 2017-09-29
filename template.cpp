@@ -10,6 +10,7 @@ typedef double dbl;
 #define mod 1000000007
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
+#define INF 2e9
 
 int main(){
   ios::sync_with_stdio(false);
