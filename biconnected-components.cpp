@@ -92,13 +92,18 @@ int main(){
 
   initialize();
 
-  dfs(0,adj,low_time,disc_time);
-  // If nodes are numbered from 1 to n then the below function call is made instead of above
-  // dfs(1,adj,low_time,disc_time);
-  while(!edge.empty()){
-    pair<ll,ll> e=edge.top();
-    cout<<e.first<<"---"<<e.second<<"\n";
-    edge.pop();
+  fr(i,0,n){
+      if(!visited[i]){
+        dfs(i,adj,low_time,disc_time);
+
+        set<ll> nodes;
+        while(!edge.empty()){
+          pair<ll,ll> e=edge.top();
+          cout<<e.first<<"---"<<e.second<<"\n";
+          edge.pop();
+        }
+        cout<<"\n";
+      }
   }
 
   return 0;
