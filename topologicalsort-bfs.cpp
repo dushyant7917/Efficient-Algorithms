@@ -31,24 +31,24 @@ void topological_sort(){
     }
   }
 
-  queue<ll> q;
+  priority_queue<ll,vector<ll>,greater<ll> > pq;
 
   fr(i,1,n+1){
     if(in_degree[i]==0){
-      q.push(i);
+      pq.push(i);
       visited[i]=true;
     }
   }
 
-  while(!q.empty()){
-    ll v=q.front();
-    q.pop();
+  while(!pq.empty()){
+    ll v=pq.top();
+    pq.pop();
     a.PB(v);
     fr(j,1,n+1){
       if(adj[v][j] && !visited[j]){
         in_degree[j]--;
         if(in_degree[j]==0){
-          q.push(j);
+          pq.push(j);
           visited[j]=true;
         }
       }
