@@ -11,12 +11,14 @@ typedef double dbl;
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
 #define INF 2e9
+#define N 100001
+#define MAX(a,b,c) max(max(a,b),c)
+#define MIN(a,b,c) min(min(a,b),c)
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
-
   ll t;
   cin>>t;
 
