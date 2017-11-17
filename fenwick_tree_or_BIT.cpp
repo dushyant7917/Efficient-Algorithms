@@ -49,7 +49,7 @@ int main(){
   }
 
   // In BIT indexing is 1 based
-  // Queries or Updates in O(n) time
+  // Queries or Updates both in O[log(n)] time
 
   // sum of a[3]+a[4]+a[5]
   cout<<query(5)-query(2)<<"\n";
