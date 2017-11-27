@@ -16,7 +16,7 @@ typedef double dbl;
 #define MIN(a,b,c) min(min(a,b),c)
 
 ll a[N];
-ll tree[2*N];
+ll tree[4*N];
 
 void build(ll node,ll start,ll end){
   if(start==end){ // leaf node
