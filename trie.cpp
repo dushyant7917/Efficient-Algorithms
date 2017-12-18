@@ -11,12 +11,12 @@ typedef double dbl;
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
 #define INF 2e9
-#define N 100001
+#define N 26
 #define MAX(a,b,c) max(max(a,b),c)
 #define MIN(a,b,c) min(min(a,b),c)
 
 struct Trie{
-  struct Trie *child[26]; // reference to a to z alphabets
+  struct Trie *child[N]; // reference to a to z alphabets(N=26)
   bool is_EOW; // flag for indicating end of word or not
 };
 
@@ -25,7 +25,7 @@ struct Trie *get_node(){
 
   ptr->is_EOW=false;
 
-  fr(i,0,26) ptr->child[i]=NULL;
+  fr(i,0,N) ptr->child[i]=NULL;
 
   return ptr;
 }
@@ -43,7 +43,8 @@ void insert(struct Trie *root,string word){
   ptr->is_EOW=true;
 }
 
-bool search(struct Trie *root,string word){
+// checks if the word is present as complete word
+bool complete_search(struct Trie *root,string word){
   struct Trie *ptr=root;
 
   ll pos;
@@ -54,6 +55,20 @@ bool search(struct Trie *root,string word){
   }
 
   return (ptr!=NULL && ptr->is_EOW==true);
+}
+
+// checks if the word is present as complete word or prefix of some other word
+bool prefix_search(struct Trie *root,string word){
+  struct Trie *ptr=root;
+
+  ll pos;
+  fr(i,0,word.size()){
+    pos=word[i]-'a';
+    if(ptr->child[pos]==NULL) return false;
+    ptr=ptr->child[pos];
+  }
+
+  return (ptr!=NULL);
 }
 
 int main(){
@@ -67,11 +82,12 @@ int main(){
 
   fr(i,0,5) insert(root,list[i]);
 
-  fr(i,0,5) cout<<search(root,list[i])<<"\n";
+  fr(i,0,5) cout<<complete_search(root,list[i])<<"\n";
 
-  string new_words[2]={"abcd","eghdsd"};
+  string new_words[3]={"ab","eghi","a"};
 
-  fr(i,0,2) cout<<search(root,new_words[i])<<"\n";
+  fr(i,0,3) cout<<complete_search(root,new_words[i])<<"\n";
+  fr(i,0,3) cout<<prefix_search(root,new_words[i])<<"\n";
 
   return 0;
 }
