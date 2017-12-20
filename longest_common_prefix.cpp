@@ -39,8 +39,8 @@ bool cmp(struct Suffix s1,struct Suffix s2){
 void build_suffix_array(ll n){
   fr(i,0,n){
     suff[i].index=i;
-    suff[i].rank[0]=str[i]-'a';
-    suff[i].rank[1]=((i+1)<n)?(str[i+1]-'a'):(-1);
+    suff[i].rank[0]=str[i];
+    suff[i].rank[1]=((i+1)<n)?(str[i+1]):(-1);
   }
 
   sort(suff,suff+n,cmp);
