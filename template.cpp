@@ -14,6 +14,8 @@ typedef double dbl;
 #define N 100001
 #define MAX(a,b,c) max(max(a,b),c)
 #define MIN(a,b,c) min(min(a,b),c)
+#define SZ(s) s.size()
+#define MS(x,v) memset(x,v,sizeof(x))
 
 int main(){
   ios::sync_with_stdio(false);
