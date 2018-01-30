@@ -2,65 +2,93 @@
 
 using namespace std;
 
-typedef long long ll;
+typedef int ll;
 typedef double dbl;
 #define fr(x,a,b) for(ll x=a;x<b;x++)
-#define pb push_back
+#define rf(x,a,b) for(ll x=a;x>b;x--)
+#define pii pair<ll,ll>
+#define PB push_back
+#define MP make_pair
 #define mod 1000000007
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
+#define INF 0x7fffffff
+#define N 100009
+#define MAX(a,b,c) max(max(a,b),c)
+#define MIN(a,b,c) min(min(a,b),c)
+#define SZ(s) s.size()
+#define MS(x,v) memset(x,v,sizeof(x))
 
-void dijkstras(vector< pair<ll,ll> > edges[],ll n,ll m,ll source_node){
-  bool visited[n+1];
-  ll dist[n+1];
+ll n,m;
+vector<pii> adj[N];
+bool visited[N];
+ll prv[N];
+ll dist[N];
+
+void init(){
   fr(i,0,n+1){
     visited[i]=false;
-    dist[i]=2e9;
+    dist[i]=INF;
+    prv[i]=-1;
   }
-  dist[source_node]=0;
+}
 
-  multiset< pair<ll,ll> > mpq; // min priority queue
-  mpq.insert(make_pair(dist[source_node],source_node));
+void print_path(ll node){
+  if(prv[node]!=-1) print_path(prv[node]);
+  cout<<node<<" ";
+}
 
-  pair<ll,ll> p;
-  ll current_node,edge_weight,neighbour_node;
-  while(!mpq.empty()){
-    p=*mpq.begin();
-    mpq.erase(mpq.begin());
-    current_node=p.second;
-    if(visited[current_node]==false){ // if node is not visited till now
-      visited[current_node]=true;
-      fr(i,0,edges[current_node].size()){ // all the neighbour nodes distance is updated
-        neighbour_node=edges[current_node][i].second;
-        edge_weight=edges[current_node][i].first;
-        if(dist[current_node]+edge_weight<dist[neighbour_node]){
-          dist[neighbour_node]=dist[current_node]+edge_weight;
-          mpq.insert(make_pair(dist[neighbour_node],neighbour_node)); // pushed into min priority queue
-        }
+void dijkstra(ll src){
+  priority_queue<pii,vector<pii>,greater<pii> > pq;
+
+  init();
+
+  prv[src]=-1;
+  dist[src]=0;
+  pq.push(MP(0,src));
+
+  ll u,v,w;
+  while(!pq.empty()){
+    u=pq.top().second; // current node
+    pq.pop();
+
+    fr(i,0,SZ(adj[u])){
+      v=adj[u][i].second; // neighbour node
+      w=adj[u][i].first; // edge weight
+
+      if(!visited[v] && dist[u]+w<dist[v]){
+        dist[v]=dist[u]+w;
+        pq.push(MP(dist[v],v));
+        prv[v]=u;
       }
     }
-  }
 
-  fr(i,2,n+1){
-    cout<<dist[i]<<" ";
+    visited[u]=true;
   }
 }
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(NULL);
+  cout.tie(NULL);
 
-  ll n,m;
   cin>>n>>m;
 
-  vector< pair<ll,ll> > edges[m+1];
-  ll start_node,end_node,weight;
+  ll a,b,w;
   fr(i,0,m){
-    cin>>start_node>>end_node>>weight;
-    edges[start_node].pb(make_pair(weight,end_node));
+    cin>>a>>b>>w;
+    adj[a].PB(MP(w,b));
+    adj[b].PB(MP(w,a));
   }
 
-  dijkstras(edges,n,m,1);
+  dijkstra(1);
+
+  if(dist[n]==INF) cout<<-1;
+  else{
+    print_path(n);
+    cout<<"\nShortest Distance:"<<dist[n];
+  }
+  cout<<"\n";
 
   return 0;
 }
