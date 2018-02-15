@@ -13,7 +13,7 @@ typedef double dbl;
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
 #define INF 2e9
-#define N 100001
+#define N 200001
 #define MAX(a,b,c) max(max(a,b),c)
 #define MIN(a,b,c) min(min(a,b),c)
 #define SZ(s) s.size()
@@ -21,6 +21,7 @@ typedef double dbl;
 
 ll n,m;
 ll a[N];
+ll ans;
 ll block_size;
 
 struct Query{
@@ -33,7 +34,10 @@ struct Query{
 struct Query q[N];
 
 bool cmp1(struct Query q1,struct Query q2){
-  if(q1.l/block_size==q2.l/block_size) return (q1.r < q2.r);
+  if(q1.l/block_size==q2.l/block_size){
+    if(q1.l==q2.l) return (q1.r < q2.r);
+    else return (q1.l < q2.l);
+  }
   else return (q1.l/block_size < q2.l/block_size);
 }
 
@@ -41,30 +45,47 @@ bool cmp2(struct Query q1,struct Query q2){
   return (q1.ind < q2.ind);
 }
 
+void add(ll ind){
+  ans+=a[ind];
+}
+
+void remove(ll ind){
+  ans-=a[ind];
+}
+
 void process(){
-  ll cl,cr,sum;
-  cl=cr=sum=0;
+  ll cl,cr;
+
+  cl=1;
+  cr=0;
+  ans=0;
 
   ll l,r;
   fr(i,0,m){
     l=q[i].l;
     r=q[i].r;
 
-    while(cl<l) sum-=a[cl++];
-
-    while(cl>l){
-      sum+=a[cl-1];
-      cl--;
+    while(cr<r){
+      cr++;
+      add(cr);
     }
 
-    while(cr<=r) sum+=a[cr++];
-
-    while(cr>r+1){
-      sum-=a[cr-1];
+    while(cr>r){
+      remove(cr);
       cr--;
     }
 
-    q[i].res=sum;
+    while(cl<l){
+      remove(cl);
+      cl++;
+    }
+
+    while(cl>l){
+      cl--;
+      add(cl);
+    }
+
+    q[i].res=ans;
   }
 }
 
@@ -73,14 +94,19 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  cin>>n;
-  fr(i,0,n) cin>>a[i];
+  cin>>n>>m;
+
+  fr(i,1,n+1) cin>>a[i];
 
   block_size=sqrt(n);
 
-  cin>>m;
+  // assuming 1 based indexing
+
+  ll a,b;
   fr(i,0,m){
-    cin>>q[i].l>>q[i].r;
+    cin>>a>>b;
+    q[i].l=a;
+    q[i].r=b;
     q[i].ind=i;
   }
 
@@ -91,7 +117,7 @@ int main(){
   sort(q,q+m,cmp2);
 
   fr(i,0,m){
-    cout<<"ind:"<<q[i].ind<<" l:"<<q[i].l<<" r:"<<q[i].r<<" res:";
+    cout<<"Sum in range ["<<q[i].l<<","<<q[i].r<<"]"<<" : ";
     cout<<q[i].res<<"\n";
   }
 
