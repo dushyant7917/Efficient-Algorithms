@@ -13,9 +13,9 @@ typedef double dbl;
 #define INF 2e9
 
 // ith bit from RHS
-bool ith_bit_set(ll n,ll i){
+bool BITSET(ll n,ll i){
   if(n&(1<<i)) return true;
-  else false;
+  else return false;
 }
 
 int main(){
@@ -26,7 +26,7 @@ int main(){
   ll n,i;
   cin>>n>>i;
 
-  cout<<ith_bit_set(n,i);
+  cout<<BITSET(n,i);
 
   return 0;
 }
