@@ -13,12 +13,17 @@ typedef double dbl;
 #define INF 2e9
 
 ll gcd_or_hcf(ll a,ll b){
+  /* RECURSIVE
   if(a==0 || b==0) return 0;
 
   if(a==b) return a;
 
   if(a<b) return gcd_or_hcf(a,b-a);
   else return gcd_or_hcf(a-b,b);
+  */
+
+  if(a==0) return b;
+  else return gcd_or_hcf(b%a,a);
 }
 
 int main(){
