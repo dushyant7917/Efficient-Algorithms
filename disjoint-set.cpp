@@ -19,12 +19,12 @@ typedef double dbl;
 #define SZ(s) s.size()
 #define MS(x,v) memset(x,v,sizeof(x))
 
-ll par[N],rank[N];
+ll par[N],rnk[N];
 
 void createSet(ll n){
   fr(i,0,n+1){
     par[i]=i;
-    rank[i]=0;
+    rnk[i]=0;
   }
 }
 
@@ -37,10 +37,10 @@ void mergeSet(ll x,ll y){
   ll xx=findSet(x);
   ll yy=findSet(y);
 
-  if(rank[xx]>rank[yy]) par[yy]=xx;
+  if(rnk[xx]>rnk[yy]) par[yy]=xx;
   else par[xx]=yy;
 
-  if(rank[xx]==rank[yy]) rank[yy]++;
+  if(rnk[xx]==rnk[yy]) rnk[yy]++;
 }
 
 int main(){
