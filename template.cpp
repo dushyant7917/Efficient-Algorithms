@@ -7,6 +7,8 @@ typedef double dbl;
 #define fr(x,a,b) for(ll x=a;x<b;x++)
 #define rf(x,a,b) for(ll x=a;x>b;x--)
 #define pii pair<ll,ll>
+#define fi first
+#define se second
 #define PB push_back
 #define MP make_pair
 #define mod 1000000007
