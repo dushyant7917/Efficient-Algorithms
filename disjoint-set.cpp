@@ -29,8 +29,12 @@ void createSet(ll n){
 }
 
 ll findSet(ll x){
-  if(par[x]!=x) par[x]=findSet(par[x]);
-  return par[x];
+  if(par[x]!=x){
+    par[x]=par[par[x]];
+    x=par[x];
+  }
+  
+  return x;
 }
 
 void mergeSet(ll x,ll y){
