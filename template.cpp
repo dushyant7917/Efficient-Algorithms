@@ -5,7 +5,7 @@ using namespace std;
 typedef long long ll;
 typedef double dbl;
 #define fr(x,a,b) for(ll x=a;x<b;x++)
-#define rf(x,a,b) for(ll x=a;x>=b;x--)
+#define rf(x,a,b) for(ll x=a;x>b;x--)
 #define pii pair<ll,ll>
 #define fi first
 #define se second
@@ -14,10 +14,10 @@ typedef double dbl;
 #define mod 1000000007
 #define gmax LLONG_MAX
 #define gmin LLONG_MIN
-#define INF 2e9
+#define inf 2e9
 #define N 100001
-#define MAX3(a,b,c) max(max(a,b),c)
-#define MIN3(a,b,c) min(min(a,b),c)
+#define max3(a,b,c) max(max(a,b),c)
+#define min3(a,b,c) min(min(a,b),c)
 #define SZ(s) ((ll)s.size())
 #define MS(x,v) memset(x,v,sizeof(x))
 
